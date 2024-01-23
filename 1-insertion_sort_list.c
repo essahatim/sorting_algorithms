@@ -24,7 +24,7 @@ void swap(listint_t *node1, listint_t *node2)
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *i, *k;
+	listint_t *i, *j;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
@@ -32,19 +32,19 @@ void insertion_sort_list(listint_t **list)
 	i = (*list)->next;
 	while (i != NULL)
 	{
-		k = i;
+		j = i;
 		i = i->next;
-		while (k != NULL && k->prev != NULL)
+		while (j != NULL && k->prev != NULL)
 		{
-			if (k->prev->n > k->n)
+			if (j->prev->n > j->n)
 			{
-				swap(k->prev, k);
-				if (!k->prev)
-					*list = k;
+				swap(j->prev, j);
+				if (!j->prev)
+					*list = j;
 				print_list((const listint_t *)*list);
 			}
 			else
-				k = k->prev;
+				j = j->prev;
 		}
 	}
 }
