@@ -19,32 +19,32 @@ void swap(listint_t *node1, listint_t *node2)
 
 /**
  * insertion_sort_list - Sorts a doubly linked list of integers
- * 			 using the Insertion sort.
+ * using the Insertion sort.
  * @list: Double pointer to the head of the doubly linked list.
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *insertion;
+	listint_t *i, *k;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	current = (*list)->next;
-	while (current != NULL)
+	i = (*list)->next;
+	while (i != NULL)
 	{
-		insertion = current;
-		current = current->next;
-		while (insertion != NULL && insertion->prev != NULL)
+		k = i;
+		i = i->next;
+		while (k != NULL && k->prev != NULL)
 		{
-			if (insertion->prev->n > insertion->n)
+			if (k->prev->n > k->n)
 			{
-				swap(insertion->prev, insertion);
-				if (!insertion->prev)
-					*list = insertion;
+				swap(k->prev, k);
+				if (!k->prev)
+					*list = k;
 				print_list((const listint_t *)*list);
 			}
 			else
-				insertion = insertion->prev;
+				k = k->prev;
 		}
 	}
 }
